@@ -16,10 +16,16 @@ st.subheader("Key Performance Indicators")
 
 col1, col2, col3, col4 = st.columns(4)
 
+paid = df[df["Payment_Status"]=="Paid"].shape[0]
+pending = df[df["Payment_Status"]=="Pending"].shape[0]
+overdue = df[df["Payment_Status"]=="Overdue"].shape[0]
+
+col1, col2, col3, col4 = st.columns(4)
+
 col1.metric("Total Invoices", len(df))
-col2.metric("Paid Invoices", df[df["Payment_Status"]=="Paid"].shape[0])
-col3.metric("Pending Payments", df[df["Payment_Status"]=="Pending"].shape[0])
-col4.metric("Average Delay Days", round(df["Delay_Days"].mean(),2))
+col2.metric("Paid Invoices", paid)
+col3.metric("Pending Payments", pending)
+col4.metric("Overdue Payments", overdue)
 
 st.markdown("---")
 
